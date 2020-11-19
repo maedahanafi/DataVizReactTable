@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com"
+     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="25" height="25" style="">
+    <g class="currentLayer" style="" transform="translate(-25,-15)">
+        <rect fill="#000000" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-dashoffset=""
+              fill-rule="nonzero" id="svg_3" x="27" y="25" width="14" height="4" style="color: rgb(0, 0, 0);"
+              class="selected" stroke-opacity="1" fill-opacity="1"
+              transform="rotate(-48.41606140136719 34.000000000000014,27.000000000000004) rotate(90 34.000000000000014,27.000000000000004)"/>
+        <rect fill="#000000" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-dashoffset=""
+              fill-rule="nonzero" x="34.40283042192459" y="24.776759430766106" width="14" height="4"
+              style="color: rgb(0, 0, 0);" class="selected" stroke-opacity="1" fill-opacity="1"
+              transform="rotate(44.50585174560547 41.402828216552734,26.776758193969727) rotate(90 41.402828216552734,26.776758193969727)" id="svg_6"/>
+    </g>
+</svg>

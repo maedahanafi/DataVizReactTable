@@ -1,0 +1,21 @@
+@import './../../../global';
+
+
+
+
+.explained-column{
+  background-color: $glow-color;
+}
+
+
+.column-header{
+  display: inline-block;
+  margin:0;
+
+  overflow: hidden;
+
+
+  .column-data-type{
+
+  }
+}

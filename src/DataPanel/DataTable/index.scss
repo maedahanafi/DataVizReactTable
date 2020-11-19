@@ -1,0 +1,55 @@
+@import '../../global';
+
+.data-table-div{
+
+  .fulltext{
+    font-family: Arial;
+    font-size: small;
+    padding:$margins
+  }
+
+  .table{
+
+    display: table;
+    border: 1px solid $border-color;
+
+    .tr{
+      display: table-row;
+    }
+
+    .th, .td{
+      display: table-cell;
+
+      border: 0.25px solid $border-color;
+      padding: 5px 15px;
+      white-space: nowrap;
+      text-align: left;
+
+      > span{
+        width: $column-width;
+        display: block;
+        overflow: hidden;
+        background-color: white;
+        position: relative;
+
+
+      }
+
+      > span:hover{
+        background-color: whitesmoke;
+
+      }
+
+      .highlight{
+        background-color: $glow-color;
+      }
+
+
+
+    }
+
+
+
+  }
+
+}

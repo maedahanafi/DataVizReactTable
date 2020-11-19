@@ -1,0 +1,18 @@
+@import './../global';
+
+.header{
+  vertical-align: middle;
+
+  >span{
+    margin: $margins;
+  }
+
+  >.search{
+    float: right;
+    width: fit-content;
+
+    input{
+      margin: $margins;
+    }
+  }
+}

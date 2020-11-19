@@ -1,0 +1,16 @@
+@import '../../../../../global';
+
+.tooltip-text{
+  font-size: 0.75em;
+  position: absolute;
+  background-color: black;
+  color: white;
+  z-index: 500;
+  padding: $margins;
+
+  >span{
+    display: block;
+  }
+
+
+}

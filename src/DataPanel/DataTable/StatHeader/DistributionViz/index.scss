@@ -1,0 +1,70 @@
+@import '../../../../global';
+
+.distribution-viz{
+  display: block;
+  position:relative;
+  height: 50px;
+  width: $column-width;
+
+  .bar-chart{
+    position: absolute;
+    height: 50px;
+    width: $column-width;
+
+    /********************************  div version */
+    .bar{
+      position: absolute;
+      background-color: #57A0D3;
+      border: black 1px solid;
+
+      .tooltip-text{
+        visibility: hidden;
+        border: black 0.5px solid;
+        text-align: center;
+        padding: 2px;
+        border-radius: 2px;
+
+        left:50%;
+      }
+
+      /* arrow */
+      .tooltip-text::after{
+        content: " ";
+        left: -5px;
+        top:5px;
+        margin-left:-5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color:  transparent black transparent transparent ;
+      }
+    }
+
+    .bar:hover{
+      background-color: red;/*powderblue;*/
+      border: black 1px solid;
+      z-index: 1000;
+
+      .tooltip-text{
+        visibility: visible;
+      }
+    }
+
+
+    /******************************** SVG version */
+    svg{
+      .distribution{
+        fill: #57A0D3;
+        stroke: black;
+        stroke-width: 0px;
+      }
+      .bar{
+        fill: red;
+
+      }
+    }
+
+
+
+
+  }
+}

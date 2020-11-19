@@ -1,0 +1,13 @@
+$margins: 5px;
+
+$pos-color: #adebad;
+$neg-color: #ffcccc;
+$glow-color: #fffa78;
+$border-color: #C0C0C0;
+
+$column-width: 200px;
+
+:export {
+  columnWidth: 200;
+  margins: 5;
+}
