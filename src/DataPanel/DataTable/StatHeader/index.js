@@ -1,6 +1,6 @@
 import React from 'react';
 import DistributionViz from './DistributionViz/index';
-import {displayedDistribution, filteredDistribution} from './../../Model/table_operations';
+import {displayedDistribution} from './../../Model/table_operations';
 
 class StatHeader extends React.Component{
     constructor(props){
@@ -11,9 +11,7 @@ class StatHeader extends React.Component{
     render(){
         let application = this.props.application;
         let table = this.props.table;
-        let distributions = table.distributions;
         let columns = this.props.columns;
-        let columnTypes = this.props.columnTypes;
         let rowIdsToRender = this.props.rowIdsToRender;
         let filter = application.filter;
 
@@ -22,8 +20,7 @@ class StatHeader extends React.Component{
         }
 
         let columnElements = columns.map((col)=> {
-            let distribution = displayedDistribution(distributions, col, columnTypes );
-            let filteredDistributionObj = filteredDistribution(distribution, rowIdsToRender);
+            let distribution = table.displayedDistribution(col );
             if(!distribution){
                 return '';
             }
@@ -33,7 +30,6 @@ class StatHeader extends React.Component{
                     application={application}
                     col={col}
                     distribution={distribution}
-                    filteredDistribution={filteredDistributionObj}
                 >
                 </DistributionViz>
             </div>;

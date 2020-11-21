@@ -3,8 +3,6 @@ import './index.scss';
 import _ from 'lodash';
 import DistributionLine from './svg/DistributionLine';
 import TooltipText from "./TooltipText/index";
-import HoveredBar from "./svg/HoveredBar";
-import LabeledBar from "./svg/LabeledBar";
 
 class DistributionViz extends React.Component {
     constructor(props) {
@@ -12,8 +10,7 @@ class DistributionViz extends React.Component {
         this.col = props.col;
 
         this.state = {
-            barChartWidth: this.props.application.dataPanel.columnWidth,
-            barChartHeight: 10,
+            barChartHeight: 10, //dummy init value
             hoverLocation: {
                 isHover: false,
                 x: -100
@@ -29,10 +26,8 @@ class DistributionViz extends React.Component {
     }
 
     componentDidMount() {
-        let barChartWidth = this.props.application.dataPanel.columnWidth;
         let barChartHeight = this.barChartElement.clientHeight;
         this.setState({
-            barChartWidth: barChartWidth,
             barChartHeight: barChartHeight
         });
     }
@@ -48,13 +43,16 @@ class DistributionViz extends React.Component {
             , 1);
 
         const barHeightUnit = this.state.barChartHeight / maxCount;
-        const barWidth = this.state.barChartWidth / distribution.length;
+        const columnWidth = this.props.application.renderConst.columnWidth;
+        const histogramColor = this.props.application.renderConst.histogramColor;
+        const barWidth = columnWidth / distribution.length;
         const renderConst = {
             'barWidth':barWidth,
             'barHeightUnit':barHeightUnit,
             'barChartHeight':this.state.barChartHeight,
-            'barChartWidth':this.state.barChartWidth,
-            'isVizOnHover':this.isVizOnHover
+            'barChartWidth':columnWidth,
+            'isVizOnHover':this.isVizOnHover,
+            'color': histogramColor
         };
 
         let points = this.convertToCoordinates(distribution, barWidth, barHeightUnit);
@@ -63,62 +61,12 @@ class DistributionViz extends React.Component {
         const hoverBarLoc = this.state.hoverLocation;
         const onHoverPt = _.find(points, (pt) => pt.x <= hoverBarLoc.x && hoverBarLoc.x < pt.x + barWidth);
 
-
-        //get all the labels and convert them into points
-        //let allLabels = this.props.allLabels;
-        let allLabels = [];
-        for(let b of distribution){
-            let labels = _.map(b.labels, (lblObj)=>lblObj.label);
-            for(let lbl of labels){
-                if(!_.includes(allLabels, lbl)){
-                    allLabels.push(lbl);
-                }
-            }
-        }
-        allLabels = _.sortBy(allLabels);
-
-
-        const filteredLabel = application.filter.label;
-        const filteredLabelDist = this.props.filteredDistribution;
-        const filteredLabelPoints = this.convertToCoordinates(filteredLabelDist, barWidth, barHeightUnit);
-
-        const labeledBars = distribution.map((bar, index) => <LabeledBar
-            key={'labeledbar-' + index}
-            allLabels={allLabels}
-            x={barWidth * index}
-            renderConst={renderConst}
-            barLabels={bar.labels}
-            visibility={'visible'}
-        ></LabeledBar>);
-        /*
-                <DistributionPolygon
-                        points={points}
-                        renderConst={renderConst}
-                    ></DistributionPolygon>
-         {filteredLabel != null ?
-                        <DistributionPolygon
-                            key={'distribution-label-' + filteredLabel}
-                            points={filteredLabelPoints}
-                            renderConst={renderConst}
-                            fill={mapLabelToColor(filteredLabel)}
-                        >
-                        </DistributionPolygon> :
-                        ''}*/
-
         return <div className='distribution-viz'>
-            <div className='bar-chart' ref={this.barChartRef} width={this.state.barChartWidth}>
-                <svg height={this.state.barChartHeight} width={this.state.barChartWidth}
+            <div className='bar-chart' ref={this.barChartRef} width={renderConst.barChartWidth}>
+                <svg height={renderConst.barChartHeight} width={renderConst.barChartWidth}
                      onMouseMove={this.onHoverDist}
                      onMouseLeave={this.onLeaveDist}
                 >
-                    {labeledBars}
-
-                    <HoveredBar
-                        onHoverPoint={onHoverPt}
-                        renderConst={renderConst}
-                        allLabels={allLabels}
-                    ></HoveredBar>
-
 
                     <DistributionLine
                         points={points}
@@ -129,7 +77,6 @@ class DistributionViz extends React.Component {
                 <TooltipText
                     onHoverPoint={onHoverPt}
                     renderConst={renderConst}
-                    allLabels={allLabels}
                 ></TooltipText>
             </div>
         </div>;

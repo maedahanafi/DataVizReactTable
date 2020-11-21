@@ -2,7 +2,6 @@ import React from 'react';
 import './index.scss';
 import DataTable from './DataTable/index';
 import InputFilter from './Widgets/InputFilter/index';
-import {displayedColumns, displayedRowIds} from './Model/table_operations';
 import LoadingIcon from "./Widgets/LoadingIcon/index";
 
 class DataPanel extends React.Component {
@@ -74,7 +73,7 @@ class DataPanel extends React.Component {
 
         const filterColumn = application.filter.column;
         const filterValues = application.filter.values;
-        const filteredColumns = displayedColumns(table.columns, table.columnValueType, filterColumn);
+        const filteredColumns = table.displayedColumns(filterColumn);
 
         const sortCol = application.sort.col;
         const sortDir = application.sort.dir;
@@ -87,9 +86,7 @@ class DataPanel extends React.Component {
         let tableLabelElement = '';
         let filteredRowLabel = '';
 
-        const allRowIds = [...table.data.keys()];
-        const rowIdsToRender = displayedRowIds(table.data, allRowIds, filteredColumns, columnTypes, labeledData, sortCol, sortDir, filterValues);
-
+        const rowIdsToRender = table.displayedRowIds( filteredColumns, sortCol, sortDir, filterValues);
 
         filteredRowLabel = filterValues.length > 0 ? ', Filtered Rows: ' + rowIdsToRender.length: '';
 

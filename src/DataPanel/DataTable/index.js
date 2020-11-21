@@ -64,8 +64,6 @@ class DataTable extends React.Component {
 
         const initRowIdsToRender = [...rowIdsToRender].slice(0, rowRenderConst+1);
 
-        const allLabels = this.props.allLabels;
-
         return <div
             className='data-table-div'
             style={{
@@ -87,7 +85,6 @@ class DataTable extends React.Component {
                                 columns={columnsToRender}
                                 columnTypes={columnTypes}
                                 rowIdsToRender={rowIdsToRender}
-                                allLabels={allLabels}
                     >
                     </StatHeader>
                     <ColumnHeader application={application}

@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 class Table {
     columns = [];
-    columnTypes = new Map();
+    columnTypes = new Map(); //columnTypes is a map of column and its column types, e.g. decimal, integer, string
     data = new Map();
     distributions = new Map();
 
@@ -81,32 +81,148 @@ class Table {
         return this.moduleName;
     }
 
+    /**
+    * Calculates the distribution of the data and stores the result in this.distributions.
+    * this.distributions is a  map of each column, where each column keys a countObj, where
+    * countObj contains:
+    *      dataValue is a value in the column,
+    *      count is the number of times that value appeared,
+    *      ids is an array of rowIds that have that value
+    */
     calculateDistribution(){
         this.distributions = new Map();
         for(let col of this.columns){
-            let counts = new Map();
-            let allValues = _.map(Array.from(this.data.values()), (rowData)=>rowData[col]?rowData[col]:'NULL');
-            let distributionObj = _.groupBy(allValues, )
-            console.log(allValues)
-            for(let [rowId, rowData] of this.data.entries()){
-                if(rowData[col]){
-                    const val = rowData[col];
-                    if(counts.has(col)){
-                        counts.get()
-                    }else{
-                        // {dataValue, count, ids, labels}
-                        var countObj = [{'dataValue': [val]}]
-                        counts.set(col, countObj);
-                    }
-
-                }
+            let counts = [];
+            let allValues = _.map(Array.from(this.data.values()), (rowData)=> rowData[col]? rowData[col]: 'NULL');
+            let distributionObj = _.groupBy(allValues);
+            for(let val of _.keys(distributionObj)){
+                // {dataValue, count, ids}
+                let countObj = {
+                    'dataValue': val,
+                    'count': distributionObj[val].length,
+                    'ids':[]
+                };
+                counts.push(countObj);
             }
-
             this.distributions.set(col, counts);
         }
         console.log(this.distributions)
     }
 
+    /**
+     * @param distributions is a map of distribution objects
+     * @returns distribution
+     * distribution is an array of objects: {dataValue, count, ids}
+     *      where dataValue is a value in the column,
+     *      count is the number of times that value appeared,
+     *      ids is an array of rowIds that have that value
+     */
+    displayedDistribution(col) {
+
+        if( this.distributions.has(col)){
+            let distObj = this.distributions.get(col);
+            if(this.isColumnNumeric(col, this.columnTypes)){
+                return _.orderBy(distObj, [(bar)=>Number(bar.dataValue)], ['asc']);
+            }
+            return _.orderBy(distObj, [(bar)=>bar.dataValue], ['asc']);;
+        }
+        return [];
+
+    }
+
+    /**
+     * @param filterColumn a substring
+     * @returns string[] the ordering of the displayed columns
+     */
+    displayedColumns(filterColumn) {
+        //filter the columns based on the column names
+        let orderedFilteredCols = filterColumn.length > 0 ?
+            this.columns.filter((col) => col && col.includes(filterColumn)) :
+            this.columns;
+
+        //rank the columns based on suspicion (either this ranking or the one based on the column type)
+        orderedFilteredCols = _.orderBy(orderedFilteredCols, [(col) => null], ['asc'])
+
+        return orderedFilteredCols;
+    }
+
+    /**
+     * @param columns the currently displayed columns
+     * @param sortCol the current column the sort is applied on
+     * @param sortDir e.g. 'asc' or 'desc'
+     * @param filterValuesBy the substring on which the row values are filtered on
+     * @returns string[] the displayed rowIds sorted
+     */
+    displayedRowIds(columns, sortCol, sortDir, filterValuesBy) {
+        const allRowIds = Array.from(this.data.keys());
+        //filter by data value
+        let rowIdsToRender = filterValuesBy.length > 0 ?
+            allRowIds.filter((rowId) =>
+                this.isRowContainSubstring(rowId, filterValuesBy, columns)
+            ) :
+            allRowIds;
+
+        //sort by selected column
+        rowIdsToRender = this.sortRowIds(rowIdsToRender, sortCol, sortDir);
+
+        return rowIdsToRender;
+    }
+
+
+
+    /**
+     * @param rowId
+     * @param substr
+     * @param columns
+     * @returns {boolean} returns true if any of the values from the given columns in a tuple given by rowId contains the substring
+     */
+    isRowContainSubstring(rowId, substr, columns) {
+        let values = '';
+        for (let col of columns) {
+            values = values + ' ' + this.data.get(rowId)[col];
+        }
+        return values.includes(substr);
+    }
+
+    /**
+     *
+     * @param rowIdsToRender an array of row ids to sort
+     * @param sortCol e.g. d_date_sk
+     * @param sortDir, e.g. 'desc' or 'asc'
+     * @returns an array of rowIds sorted by the values in the given column and the datapoint label
+     */
+    sortRowIds(rowIdsToRender, sortCol, sortDir){
+        //show the rows we render
+        rowIdsToRender = sortCol.length > 0 ?
+            this.sortRowIdsByColumn(rowIdsToRender, sortCol, sortDir) :
+            rowIdsToRender;
+
+        return rowIdsToRender;
+    }
+
+    /**
+     * @param rowIds, e.g. ROW_ID_1
+     * @param col, e.g. d_date_sk
+     * @param sortDir, e.g. 'desc' or 'asc'
+     * @returns an array of rowIds sorted by the values in the given column
+     */
+    sortRowIdsByColumn(rowIds, col, sortDir) {
+
+        let sortCallback = (id) => {
+            const val = this.data.has(id) ? this.data.get(id)[col] : null;
+            if(this.isColumnNumeric(col)){
+                return Number(val);
+            }
+            return val;
+        };
+
+        return _.orderBy(rowIds, [sortCallback], [sortDir]);
+    }
+
+    isColumnNumeric(col){
+        const columnType = this.columnTypes.get(col);
+        return columnType && (columnType.includes('int') || columnType.includes('numeric'));
+    }
 }
 
 export default Table;

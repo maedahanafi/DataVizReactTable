@@ -13,7 +13,7 @@ class DistributionLine extends React.Component{
                      style={{
                          'strokeWidth': strokeWidth + 'px',
                          'stroke': 'white',
-                         'fill': 'none'
+                         'fill': renderConst.color
                      }}
         ></path>;
     }

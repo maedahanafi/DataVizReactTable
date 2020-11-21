@@ -5,7 +5,8 @@ class Application{
     
     renderConst = {
         margins: globalCss.margins,
-        columnWidth: globalCss.columnWidth
+        columnWidth: globalCss.columnWidth,
+        histogramColor: '#5DADE2'
     };
 
     dataPanel = {
