@@ -14,7 +14,7 @@ class Application{
         title: '',
         needUpdateHeightConst: true,
         height: 500,
-        width: 100
+        width: -1 //some dummy value
     };
 
     filter = {
@@ -33,8 +33,7 @@ class Application{
         renderConst, options
     ) {
 
-        this.dataPanel.height = renderConst.height;
-        this.dataPanel.width = renderConst.width;
+        this.dataPanel.height = renderConst.maxheight;
 
         this.dataPanel.title = options.title? options.title: this.dataPanel.title;
         this.renderConst.columnWidth = options.columnWidth? options.columnWidth: this.renderConst.columnWidth;

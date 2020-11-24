@@ -20,7 +20,7 @@ class DataValue extends React.Component {
         const highlightColor = application.renderConst.highlightColor;
 
         let filterValues = filter? filter.values: '';
-        let backgroundColor = filterValues.length>0 && value.includes(filterValues) ?
+        let backgroundColor = filterValues.length>0 && value && (value+'').includes(filterValues) ?
             highlightColor: 'white';
 
         let style = {

@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# DataVizReactTable
 
-## Available Scripts
+People google questions like "How do I make a scrollable table? How do I make table header stick? How do I add histogram over each column of my table? "
 
-In the project directory, you can run:
+Omg now there is a one-liner tag that that solves your table problems.
 
-### `npm start`
+![Alt text](demo/demo1.png?raw=true "Bam")
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install with (insaAllah youll be able to run this command):
+```
+npm install datavizreacttable
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Prepare your data:
+```javascript
+columns = ['first_name', 'last_name', 'birth_year',	'city',	'state', 'military', 'gender'];
+data = {
+       1: {'first_name':'Anna', 'last_name':'Shaughn', 'birth_year':1985, 'city':'Lansing', 'state':'MI', 'military':'N', 'gender':'M'},
+       2: {'first_name':'Emma', 'last_name':'Shaune', 'birth_year':1998, 'city':'Dearborn', 'state':'MI', 'military':'N', 'gender':'F'},
+       3: {'first_name':'Elizabeth', 'last_name':'Shem', 'birth_year':1989, 'city':'Dearborn Heights', 'state':'MI', 'military':'Y', 'gender':'F'},
+       4: {'first_name':'Minnie', 'last_name':'Shonn', 'birth_year':1986, 'city':'Wayne', 'state':'MI', 'military':'N', 'gender':'F'},
+       5: {'first_name':'Margaret', 'last_name':'Sigurd', 'birth_year':1989, 'city':'Detroit', 'state':'MI', 'military':'Y', 'gender':'M'},
+       6: {'first_name':'Ida', 'last_name':'Simcha', 'birth_year':1998, 'city':'Detroit', 'state':'MI', 'military':'N', 'gender':'F'},
+       7: {'first_name':'Alice', 'last_name':'Skeeter', 'birth_year':1995, 'city':'Lansing', 'state':'MI', 'military':'N', 'gender':'M'},
+       8: {'first_name':'Bertha', 'last_name':'Slyvester', 'birth_year':1994, 'city':'Dearnborn', 'state':'MI', 'military':'Y', 'gender':'M'},
+       9: {'first_name':'Sarah', 'last_name':'Smiley', 'birth_year':1999, 'city':'Pontiac', 'state':'MI', 'military':'N', 'gender':'M'},
+       10: {'first_name':'Annie', 'last_name':'Soren', 'birth_year':2000, 'city':'Pontiac', 'state':'MI', 'military':'Y', 'gender':'F'}
+};
+```
+Set some options here:
+```javascript
+//Required!
+let renderConst = {'maxheight': 300};
+//Optional params
+let options = {
+    'title':'Dummy Table',
+    'columnWidth': 200,
+    'highlightColor': 'yellow',
+    'histogramColor': '#5DADE2'
+};
+```
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+And then you can just visualize your data in the render() with:
+```
+    <DataVizReactTable 
+        data={data}
+        columns={columns}
+        columnTypes={columnTypes}
+        title='Dummy Table'
+        renderConst={renderConst}
+        options={options}
+    > 
+    </DataVizReactTable>
+```
+(1) how to make table header non scrollable? how to make table header stick to the top? (2) how to make only body of table scrollable? (3) how to visualize the distribution of values of each column?

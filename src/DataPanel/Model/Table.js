@@ -43,8 +43,8 @@ class Table {
 
 
     updateTable(data, columns, columnTypes) {
-        this.data = data? new Map(Object.keys(data).map((rowId)=>[rowId, data[rowId]])): new Map();
         this.columns = columns? columns: [];
+        this.data = data? new Map(Object.keys(data).map((rowId)=>[rowId, data[rowId]])): new Map();
         this.columnTypes = columnTypes?
             new Map(Object.keys(columnTypes).map((col)=>[col, _.lowerCase(columnTypes[col])])):
             new Map(columns.map((col)=>[col,'string'])); //default everything is string type

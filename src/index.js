@@ -15,8 +15,25 @@ let data ={
     '5':{d_date:'2000-01-05',d_current_week:'N',d_week_seq:'5219',d_current_day:'N',d_first_dom:'2451545',d_moy:'1',d_holiday:'N',d_month_seq:'1200',d_current_year:'N',d_fy_quarter_seq:'401',d_current_quarter:'N',d_year:'2000',d_weekend:'N',d_quarter_seq:'401',d_date_id:'AAAAAAAANFIGFCAA',d_following_holiday:'N',d_fy_year:'2000',d_same_day_lq:'2451457',d_qoy:'1',d_current_month:'N',d_same_day_ly:'2451184',d_dom:'5',d_date_sk:'2451549',d_last_dom:'2451544',d_fy_week_seq:'5219',d_day_name:'Wednesday',d_quarter_name:'2000Q1',d_dow:'3'}
 };
 
+
+columns = ['first_name', 'last_name', 'birth_year',	'city',	'state', 'military', 'gender']
+columnTypes = null;
+data = {
+       1: {'first_name':'Anna', 'last_name':'Shaughn', 'birth_year':1985, 'city':'Lansing', 'state':'MI', 'military':'N', 'gender':'M'},
+       2: {'first_name':'Emma', 'last_name':'Shaune', 'birth_year':1998, 'city':'Dearborn', 'state':'MI', 'military':'N', 'gender':'F'},
+       3: {'first_name':'Elizabeth', 'last_name':'Shem', 'birth_year':1989, 'city':'Dearborn Heights', 'state':'MI', 'military':'Y', 'gender':'F'},
+       4: {'first_name':'Minnie', 'last_name':'Shonn', 'birth_year':1986, 'city':'Wayne', 'state':'MI', 'military':'N', 'gender':'F'},
+       5: {'first_name':'Margaret', 'last_name':'Sigurd', 'birth_year':1989, 'city':'Detroit', 'state':'MI', 'military':'Y', 'gender':'M'},
+       6: {'first_name':'Ida', 'last_name':'Simcha', 'birth_year':1998, 'city':'Detroit', 'state':'MI', 'military':'N', 'gender':'F'},
+       7: {'first_name':'Alice', 'last_name':'Skeeter', 'birth_year':1995, 'city':'Lansing', 'state':'MI', 'military':'N', 'gender':'M'},
+       8: {'first_name':'Bertha', 'last_name':'Slyvester', 'birth_year':1994, 'city':'Dearnborn', 'state':'MI', 'military':'Y', 'gender':'M'},
+       9: {'first_name':'Sarah', 'last_name':'Smiley', 'birth_year':1999, 'city':'Pontiac', 'state':'MI', 'military':'N', 'gender':'M'},
+       10: {'first_name':'Annie', 'last_name':'Soren', 'birth_year':2000, 'city':'Pontiac', 'state':'MI', 'military':'Y', 'gender':'F'}
+};
+
+
 //Required!
-let renderConst = {'height': 300, 'width': 100};
+let renderConst = {'maxheight': 300};
 //Optional params
 let options = {
     'title':'Dummy Table',
