@@ -52,4 +52,3 @@ And then you can just visualize your data in the render() with:
     > 
     </DataVizReactTable>
 ```
-(1) how to make table header non scrollable? how to make table header stick to the top? (2) how to make only body of table scrollable? (3) how to visualize the distribution of values of each column?
