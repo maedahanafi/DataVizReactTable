@@ -1,6 +1,6 @@
 # DataVizReactTable
 
-People google questions like "How do I make a scrollable table? How do I make table header stick? How do I add histogram over each column of my table? "
+People google questions like "How do I make a scrollable table? How do I make table header stick? How do I add histogram over each column of my table? How do I make my table sort by column? How do I filter columns in my table? How do I filter values in my table? How do I make more friends?"
 
 Omg now there is a one-liner tag that that solves your table problems.
 
