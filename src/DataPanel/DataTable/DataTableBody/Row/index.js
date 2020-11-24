@@ -21,9 +21,6 @@ class Row extends React.Component {
 
         const rowId = this.props.rowId;
         const columns = this.props.columns;
-        const backgroundColor = 'white';
-        
-
 
         let tupleElements = columns.map((col) => {
             return <DataValue key={'data-value-' + col + '-' + rowId}
@@ -31,7 +28,6 @@ class Row extends React.Component {
                        rowId={rowId}
                        col={col}
                        value={data.has(rowId) ? data.get(rowId)[col] : null}
-                       backgroundColor={backgroundColor}
             >
 
             </DataValue>
@@ -40,7 +36,7 @@ class Row extends React.Component {
 
 
 
-        return <div className='tr' style={{'backgroundColor':backgroundColor}}>
+        return <div className='tr' >
             {tupleElements}
         </div>;
     }

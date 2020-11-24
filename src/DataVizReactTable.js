@@ -4,14 +4,21 @@ import Model from './DataPanel/Model/Model';
 import Application from './DataPanel/Model/Application';
 import './index.scss';
 
-class App extends React.Component{
+class DataVizReactTable extends React.Component{
     constructor(props){
         super(props);
 
         //note: any changes to the global data store, must be followed by a call to the updateState function
         //to reflect any changes in react's global data store
         this.updateState = this.updateState.bind(this);
-        let globalDataStore = new Model(this.updateState);
+
+        let globalDataStore = new Model(
+            this.updateState,
+            props.data, props.columns, props.columnTypes,
+            props.renderConst, props.options //display options
+        );
+
+        //set up state
         globalDataStore['lastUpdatedKey'] = ''; // contains the key that was last updated
         this.state = globalDataStore;
 
@@ -39,13 +46,11 @@ class App extends React.Component{
         let application = model.application;
         const table = model.table;
 
-        return <div className="App">
-            <DataPanel
+        return <DataPanel
                 application={model.application}
                 table={model.table}
-            ></DataPanel>
-        </div>;
+            ></DataPanel>;
     }
 }
 
-export default App;
+export default DataVizReactTable;

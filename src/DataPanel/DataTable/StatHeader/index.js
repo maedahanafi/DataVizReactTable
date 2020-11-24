@@ -1,6 +1,5 @@
 import React from 'react';
 import DistributionViz from './DistributionViz/index';
-import {displayedDistribution} from './../../Model/table_operations';
 
 class StatHeader extends React.Component{
     constructor(props){

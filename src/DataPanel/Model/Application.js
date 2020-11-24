@@ -6,18 +6,15 @@ class Application{
     renderConst = {
         margins: globalCss.margins,
         columnWidth: globalCss.columnWidth,
+        highlightColor: globalCss.glowColor,
         histogramColor: '#5DADE2'
     };
 
     dataPanel = {
-        moduleName: null,
+        title: '',
         needUpdateHeightConst: true,
         height: 500,
         width: 100
-    };
-
-    dataTable = {
-
     };
 
     filter = {
@@ -31,8 +28,18 @@ class Application{
     };
 
 
-    constructor(globalKey, updateGlobalStore) {
-        console.log(this)
+    constructor(
+        globalKey, updateGlobalStore,
+        renderConst, options
+    ) {
+
+        this.dataPanel.height = renderConst.height;
+        this.dataPanel.width = renderConst.width;
+
+        this.dataPanel.title = options.title? options.title: this.dataPanel.title;
+        this.renderConst.columnWidth = options.columnWidth? options.columnWidth: this.renderConst.columnWidth;
+        this.renderConst.highlightColor = options.highlightColor? options.highlightColor: this.renderConst.highlightColor;
+        this.renderConst.histogramColor = options.histogramColor? options.histogramColor: this.renderConst.histogramColor;
 
         this.updateGlobalStore = updateGlobalStore;
         this.globalKey = globalKey;
@@ -40,7 +47,6 @@ class Application{
         this.updateFilter = this.updateFilter.bind(this);
         this.toggleSort = this.toggleSort.bind(this);
 
-        console.log(this)
     }
 
     updateApplicationState(key, value){

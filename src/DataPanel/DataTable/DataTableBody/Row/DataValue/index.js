@@ -3,14 +3,6 @@ import React from 'react';
 class DataValue extends React.Component {
     constructor(props) {
         super(props);
-        this.application = props.application;
-        this.filter = this.application.filter;
-        this.columnWidth = this.application.renderConst.columnWidth;
-        this.rowId = props.rowId;
-        this.col = props.col;
-        this.value = props.value;
-        this.backgroundColor = props.backgroundColor;
-
         this.contentElement = null;
         this.contentRef = (elem) => this.contentElement = elem;
 
@@ -18,25 +10,28 @@ class DataValue extends React.Component {
 
 
     render() {
+        const rowId = this.props.rowId;
+        const col = this.props.col;
+        const value = this.props.value;
 
-        let filterValues = this.filter? this.filter.values: '';
+        let application = this.props.application;
+        const filter = application.filter;
+        const columnWidth = application.renderConst.columnWidth;
+        const highlightColor = application.renderConst.highlightColor;
+
+        let filterValues = filter? filter.values: '';
+        let backgroundColor = filterValues.length>0 && value.includes(filterValues) ?
+            highlightColor: 'white';
 
         let style = {
-            'width': this.columnWidth,
-            'backgroundColor': 'rgba(0,0,0,0)'
+            'width': columnWidth,
+            'backgroundColor': backgroundColor//'rgba(0,0,0,0)'
         };
-
-        let highlightClassName = filterValues.length>0 && this.value.includes(filterValues) ?
-            'highlight': '';
-
         return <div className='td' >
             <span ref={this.contentRef}
                   style={style}
-                  className={highlightClassName}
             >
-                {this.value}
-
-
+                {value}
             </span>
         </div>;
     }

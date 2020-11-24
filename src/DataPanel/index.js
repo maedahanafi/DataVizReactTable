@@ -92,7 +92,7 @@ class DataPanel extends React.Component {
 
         return <div className='data-panel panel' ref={this.elementRef}>
             <div className='header' ref={this.headerElementRef}>
-                <span className='label'>{table.getTableName()}  </span>
+                <span className='label'>{application.dataPanel.title}  </span>
                 <LoadingIcon isLoading={isLoading}></LoadingIcon>
                 <span className='sub-label '>
                     {statsLabel + filteredColLabel + filteredRowLabel}
