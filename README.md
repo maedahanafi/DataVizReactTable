@@ -8,12 +8,12 @@ Omg now there is a one-liner tag that that solves your table problems.
 
 Install with:
 ```
-npm install datavizreacttable
+npm install datavizreactable
 ```
 
 Import it with:
 ```javascript
-import DataVizReactTable from 'datavizreacttable';
+import DataVizReactTable from 'datavizreactable';
 ```
 
 Prepare your data:

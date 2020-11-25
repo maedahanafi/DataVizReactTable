@@ -1,6 +1,6 @@
 {
 		"name": "datavizreactable",
-		"version": "0.1.0",
+		"version": "0.2.0",
 		"main": "src/DataVizReactTable.js",
 		"author": "Maeda Hanafi <maeda.han@gmail.com> (https://thetruecaptian.github.io/)",
 		"peerDependencies": {
