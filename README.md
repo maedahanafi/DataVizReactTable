@@ -4,11 +4,16 @@ People google questions like "How do I make a scrollable table? How do I make ta
 
 Omg now there is a one-liner tag that that solves your table problems.
 
-![Alt text](https://raw.githubusercontent.com/theTrueCaptian/DataVizReactTable/master/demo/demo1.png "Bam")
+![Alt text](https://thetruecaptian.github.io/img/datavizreacttable.png "Bam")
 
 Install with:
 ```
 npm install datavizreacttable
+```
+
+Import it with:
+```javascript
+import DataVizReactTable from 'datavizreacttable';
 ```
 
 Prepare your data:
