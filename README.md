@@ -4,17 +4,17 @@ People google questions like "How do I make a scrollable table? How do I make ta
 
 Omg now there is a one-liner tag that that solves your table problems.
 
-![Alt text](demo/demo1.png?raw=true "Bam")
+![Alt text](https://raw.githubusercontent.com/theTrueCaptian/DataVizReactTable/master/demo/demo1.png "Bam")
 
-Install with (insaAllah youll be able to run this command):
+Install with:
 ```
 npm install datavizreacttable
 ```
 
 Prepare your data:
 ```javascript
-columns = ['first_name', 'last_name', 'birth_year',	'city',	'state', 'military', 'gender'];
-data = {
+let columns = ['first_name', 'last_name', 'birth_year',	'city',	'state', 'military', 'gender'];
+let data = {
        1: {'first_name':'Anna', 'last_name':'Shaughn', 'birth_year':1985, 'city':'Lansing', 'state':'MI', 'military':'N', 'gender':'M'},
        2: {'first_name':'Emma', 'last_name':'Shaune', 'birth_year':1998, 'city':'Dearborn', 'state':'MI', 'military':'N', 'gender':'F'},
        3: {'first_name':'Elizabeth', 'last_name':'Shem', 'birth_year':1989, 'city':'Dearborn Heights', 'state':'MI', 'military':'Y', 'gender':'F'},
@@ -45,7 +45,6 @@ And then you can just visualize your data in the render() with:
     <DataVizReactTable 
         data={data}
         columns={columns}
-        columnTypes={columnTypes}
         title='Dummy Table'
         renderConst={renderConst}
         options={options}
