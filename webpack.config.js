@@ -1,12 +1,11 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
   mode: 'production',
   entry: './src/DataVizReactTable.js',
   output: {
-    path: path.resolve('lib'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'DataVizReactTable.js',
     libraryTarget: 'commonjs2',
   },
@@ -14,20 +13,28 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules)/,
-        use: 'babel-loader',
+		  include: path.resolve(__dirname, 'src'),
+		  //exclude: /(node_modules|bower_components|build)/,
+        use: {
+			  loader: 'babel-loader',
+			  options:{
+				  presets: ['@babel/preset-env', '@babel/preset-react'],
+				  'plugins':['@babel/plugin-transform-react-jsx','@babel/plugin-proposal-class-properties']
+			  }
+		  }
       },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-				  fallback : 'style-loader',
-				  use : [
-						'css-loader',
-						'sass-loader'
-				  ]
-			 })
+		{
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       }
-    ],
+    ]
   },
   resolve: {
     alias: {
@@ -49,10 +56,5 @@ module.exports = {
       amd: "ReactDOM",
       root: "ReactDOM"
     }
-  },
-  plugins:[
-		new ExtractTextPlugin({
-		filename: 'DataVizReactTable.css',
-		}),
-	],
+  }
 };

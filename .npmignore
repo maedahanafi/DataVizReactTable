@@ -1,4 +1,8 @@
 webpack.local.config.js
-	webpack.production.config.js
-	.eslintrc
-	.gitignore
+webpack.production.config.js
+.eslintrc
+.gitignore
+src
+demo
+.babelrc
+webpack.config.js
