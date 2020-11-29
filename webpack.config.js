@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 
 module.exports = {
@@ -33,6 +34,15 @@ module.exports = {
           // Compiles Sass to CSS
           "sass-loader",
         ],
+      },
+		{
+        test: /\.html$/,
+        include: path.resolve(__dirname, 'public'),
+		  use: [
+          {
+            loader: "html-loader"
+          }
+        ]
       }
     ]
   },

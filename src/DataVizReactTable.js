@@ -8,26 +8,31 @@ class DataVizReactTable extends React.Component{
     constructor(props){
         super(props);
 
-        //note: any changes to the global data store, must be followed by a call to the updateState function
+		  this.state = {};
+    }
+	 
+	 componentDidMount() {
+		  //note: any changes to the global data store, must be followed by a call to the updateState function
         //to reflect any changes in react's global data store
         this.updateState = this.updateState.bind(this);
 
         let globalDataStore = new Model(
             this.updateState,
-            props.data, props.columns, props.columnTypes,
-            props.renderConst, props.options //display options
+            this.props.data, this.props.columns, this.props.columnTypes,
+            this.props.renderConst, this.props.options //display options
         );
 
         //set up state
         globalDataStore['lastUpdatedKey'] = ''; // contains the key that was last updated
-        this.state = globalDataStore;
-
-    }
+        this.setState(globalDataStore);
+	 }
 
     //This is where you update the global store
     updateState(key, obj){
-        console.log(key, 'updateState', obj);
-
+		  if(this.state.application && this.state.application.isDebug){
+				console.log(key, 'updateState', obj);
+		  }
+		  
         let newState = {};
         newState[key] = obj;
         newState['lastUpdatedKey'] = key;
@@ -40,16 +45,19 @@ class DataVizReactTable extends React.Component{
         return true;
     }
     render(){
-        console.log('render App')
 
         let model = this.state;
         let application = model.application;
-        const table = model.table;
-
-        return <DataPanel
-                application={model.application}
-                table={model.table}
-            ></DataPanel>;
+        let table = model.table;
+		  
+		  if(table && application){
+			  return <DataPanel
+						 application={application}
+						 table={table}
+					></DataPanel>;
+		  }
+		  
+		  return '';
     }
 }
 

@@ -3,6 +3,6 @@ webpack.production.config.js
 .eslintrc
 .gitignore
 src
-demo
 .babelrc
 webpack.config.js
+.idea

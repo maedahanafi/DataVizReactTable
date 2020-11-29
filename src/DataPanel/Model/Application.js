@@ -3,6 +3,8 @@ import globalCss from './../../_global.scss';
 
 class Application{
     
+	 isDebug = false;
+	 
     renderConst = {
         margins: globalCss.margins,
         columnWidth: globalCss.columnWidth,

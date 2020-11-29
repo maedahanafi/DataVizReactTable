@@ -8,12 +8,14 @@ class DataTableBody extends React.Component{
     }
 
     render(){
-        console.log('Render Rows')
-
-        let application = this.props.application;
+		  let application = this.props.application;
         let table = this.props.table;
         let data = table.data;
 
+		  if(application && application.isDebug){
+				console.log('Render Rows')
+		  }
+        
         let columns = this.props.columns;
         let rowIds = this.props.rowIds;
 

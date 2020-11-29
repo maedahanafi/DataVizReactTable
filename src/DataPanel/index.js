@@ -62,11 +62,14 @@ class DataPanel extends React.Component {
     }
 
     render() {
-        console.log('render DataPanel');
-
+		  
         let application = this.props.application;
         let table = this.props.table;
 
+		  if(application && application.isDebug){
+				console.log('render DataPanel');
+		  }
+		  
         const isLoading = table.isLoading;
 
         const statsLabel = ' Rows: ' + table.data.size + ', Columns: ' + table.columns.length;
