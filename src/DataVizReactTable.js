@@ -51,10 +51,12 @@ class DataVizReactTable extends React.Component{
         let table = model.table;
 		  
 		  if(table && application){
-			  return <DataPanel
+			  return <div className='datavizreactable'>
+					<DataPanel
 						 application={application}
 						 table={table}
-					></DataPanel>;
+					></DataPanel>
+			  </div>;
 		  }
 		  
 		  return '';

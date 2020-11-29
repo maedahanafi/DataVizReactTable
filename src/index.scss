@@ -14,20 +14,22 @@ code {
     monospace;
 }
 
+.datavizreactable{
 
-.panel {
-  border: 1px solid $border-color;
-  border-radius: $margins;
-  margin: $margins;
-  padding: $margins;
-}
+	.panel {
+	  border: 1px solid $border-color;
+	  border-radius: $margins;
+	  margin: $margins;
+	  padding: $margins;
+	}
 
-.label{
-  display: inline-block;
-  margin: auto;
-}
+	.label{
+	  display: inline-block;
+	  margin: auto;
+	}
 
-.sub-label{
-  color: #999999;
-  font-size: 0.75em;
+	.sub-label{
+	  color: #999999;
+	  font-size: 0.75em;
+	}
 }

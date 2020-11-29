@@ -11,5 +11,21 @@
     width: 1em;
     height: 1em;
   }
+  
+	/*.up {
+		height:0;
+		width:0;
+		border-top:1em solid black;
+		border-left:1em solid transparent;
+		transform:rotate(-45deg);   
+	}
+
+	.down {
+		height:0;
+		width:0;
+		border-bottom:1em solid black;
+		border-right:1em solid transparent;
+		transform:rotate(-45deg); 
+	}*/
 
 }
