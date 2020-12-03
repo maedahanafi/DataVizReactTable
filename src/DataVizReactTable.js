@@ -3,12 +3,14 @@ import DataPanel from './DataPanel/index';
 import Model from './DataPanel/Model/Model';
 import Application from './DataPanel/Model/Application';
 import './index.scss';
+import _globalCss from './_global.scss';
 
 class DataVizReactTable extends React.Component{
     constructor(props){
         super(props);
 
 		  this.state = {};
+		  console.log('_globalCss', _globalCss);
     }
 	 
 	 componentDidMount() {

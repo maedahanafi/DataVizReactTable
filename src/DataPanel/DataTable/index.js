@@ -57,6 +57,7 @@ class DataTable extends React.Component {
         const width = application.dataPanel.width;
         const bodyHeight = height - this.state.headerHeight - (2 * application.renderConst.margins);
 
+
         const rowRenderConst = this.state.rowRenderCount;
 
         const columnsToRender = this.props.columnsToRender;

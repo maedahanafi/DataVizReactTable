@@ -1,14 +1,19 @@
 import _ from 'lodash';
-import globalCss from './../../_global.scss';
+import _globalCss from './../../_global.scss';
 
 class Application{
     
-	 isDebug = false;
-	 
+	isDebug = false;
+
+	/* Note: Webpack 4 is unable to read the exported variables from _globalCss :(
+	 *  BUT, running during production actually loads from scss file. Still have no clue as why
+	 *  that is aside from Webpack version of this app isn't exporting the vars properly.
+	 * Just make the global vars are the same as in renderConst.
+	 */
     renderConst = {
-        margins: globalCss.margins,
-        columnWidth: globalCss.columnWidth,
-        highlightColor: globalCss.glowColor,
+        margins: 5,//_globalCss.margins,
+        columnWidth: 200,//_globalCss.columnWidth,
+        highlightColor: '#fffa78', //_globalCss.glowColor,
         histogramColor: '#5DADE2'
     };
 
@@ -41,6 +46,7 @@ class Application{
         this.renderConst.columnWidth = options.columnWidth? options.columnWidth: this.renderConst.columnWidth;
         this.renderConst.highlightColor = options.highlightColor? options.highlightColor: this.renderConst.highlightColor;
         this.renderConst.histogramColor = options.histogramColor? options.histogramColor: this.renderConst.histogramColor;
+        this.renderConst.margins = this.renderConst.margins;
 
         this.updateGlobalStore = updateGlobalStore;
         this.globalKey = globalKey;
@@ -48,6 +54,7 @@ class Application{
         this.updateFilter = this.updateFilter.bind(this);
         this.toggleSort = this.toggleSort.bind(this);
 
+        console.log('this.renderConst', this.renderConst, '_globalCss', _globalCss)
     }
 
     updateApplicationState(key, value){
